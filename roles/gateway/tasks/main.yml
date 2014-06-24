@@ -1,0 +1,14 @@
+---
+- name: Install openvpn apt package.
+  sudo: true
+  apt: >
+    package=openvpn
+    state=latest
+- name: Install bridge-utils apt package.
+  sudo: true
+  apt: >
+    package=bridge-utils
+    state=latest
+
+# Check https://help.ubuntu.com/community/OpenVPN for more.
+# Also run dev environment provisioning

@@ -1,0 +1,34 @@
+---
+- name: Create the build root for {{ image_name }}:{{ image_tag }}.
+  sudo: true
+  file: >
+    dest={{ image_build_root }}/{{ image_name }}/{{ image_tag }}
+    state=directory
+
+- name: Copy image provisioning files to build location.
+  sudo: true
+  copy: >
+    src=images/{{ image_name }}
+    dest={{ image_build_root }}/{{ image_name }}/{{ image_tag }}
+
+- name: Generate Dockerfile from template.
+  sudo: true
+  template: >
+    src=Dockerfile
+    dest={{ image_build_root }}/{{ image_name }}/{{ image_tag }}/Dockerfile
+
+- name: Pull existing {{ image_name }}:{{ image_tag }} image if available.
+  sudo: true
+  ignore_errors: yes
+  command: >
+    /usr/bin/docker pull 'cdata/{{ image_name }}'
+
+- name: Build Docker image {{ image_name }}:{{ image_tag }}.
+  sudo: true
+  command: >
+    /usr/bin/docker build -t 'cdata/{{ image_name }}:{{ image_tag }}' {{ image_build_root }}/{{ image_name }}/{{ image_tag }}
+
+- name: Push {{ image_name }}:{{ image_tag }} image to Docker.io registry.
+  sudo: true
+  command: >
+    /usr/bin/docker push 'cdata/{{ image_name }}:{{ image_tag }}'

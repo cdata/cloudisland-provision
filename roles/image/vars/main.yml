@@ -1,0 +1,8 @@
+image_base: 'linuturk/ubuntu-ansible:precise'
+image_build_root: /tmp/build_root
+image_name: 'not_provided'
+image_tag: 'default'
+image_ports: []
+image_volumes: []
+image_command: '/bin/bash'
+image_variables: 'no_extra_vars=true'

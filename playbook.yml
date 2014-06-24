@@ -1,0 +1,45 @@
+---
+- hosts: gateway
+  roles:
+    - gateway
+- hosts: compute
+  roles:
+    - compute
+    - { role: container,
+        image_name: 'cdata/minecraft:1.7.9',
+        container_ports: '25565:25565',
+        container_name: 'minecraft-vanilla-0',
+        container_volume: '/minecraft/world_volume' }
+    - { role: container,
+        image_name: 'cdata/minecraft-modded:alpha',
+        container_ports: '25565:25566',
+        container_name: 'minecraft-modded-0',
+        container_volume: '/minecraft/world_volume' }
+- hosts: factory
+  roles:
+    - factory
+    - { role: image,
+        image_name: 'minecraft',
+        image_tag: 1.7.2,
+        image_ports: [25565],
+        image_volumes: ['/minecraft/world_volume'],
+        image_command: '/minecraft/start_server.sh' }
+    - { role: image,
+        image_name: 'minecraft',
+        image_tag: 1.7.9,
+        image_ports: [25565],
+        image_volumes: ['/minecraft/world_volume'],
+        image_command: '/minecraft/start_server.sh' }
+    - { role: image,
+        image_base: 'cdata/minecraft:1.7.2',
+        image_name: 'minecraft-forge',
+        image_tag: 1.7.2,
+        image_volumes: ['/minecraft/world_volume'],
+        image_command: '/minecraft/start_server.sh',
+        minecraft_forge_version: 1.7.2-10.12.2.1121 }
+    - { role: image,
+        image_base: 'cdata/minecraft-forge:1.7.2',
+        image_name: 'minecraft-modded',
+        image_tag: alpha,
+        image_volumes: ['/minecraft/world_volume'],
+        image_command: '/minecraft/start_server.sh' }

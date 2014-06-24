@@ -1,0 +1,21 @@
+---
+- name: Generate start_server.sh script from template.
+  template: >
+    src=start_server.sh
+    dest={{ minecraft_root }}/start_server.sh
+    mode=0555
+
+- name: Download Minecraft Forge installer.
+  get_url: >
+    url=http://files.minecraftforge.net/maven/net/minecraftforge/forge/{{ minecraft_forge_version }}/forge-{{ minecraft_forge_version }}-installer.jar
+    dest={{ minecraft_root }}/minecraft_forge_installer.jar
+
+- name: Install Minecraft Forge.
+  command: >
+    /usr/bin/java -jar {{ minecraft_root }}/minecraft_forge_installer.jar -installServer
+    chdir={{ minecraft_root }}
+
+- name: Create Minecraft Forge mods directory.
+  file: >
+    dest={{ minecraft_root }}/mods
+    state=directory

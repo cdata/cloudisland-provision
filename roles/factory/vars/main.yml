@@ -1,0 +1,5 @@
+provision_root: /vagrant
+docker_email: chris@scriptolo.gy
+docker_user: cdata
+docker_secret: not_provided
+

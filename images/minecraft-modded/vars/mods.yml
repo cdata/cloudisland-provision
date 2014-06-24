@@ -1,0 +1,53 @@
+minecraft_mods:
+  - name: Thaumcraft
+    docs_url: http://www.minecraftforum.net/topic/2011841-thaumcraft-41114-updated-2052014/
+    download_url: https://dl.dropboxusercontent.com/u/47135879/Thaumcraft-1.7.2-4.1.1.14.jar
+
+  - name: Pet Bat
+    docs_url: http://atomicstryker.net/petbat.php
+    download_url: https://github.com/AtomicStryker/github.io/raw/master/files/PetBat-1.7.2.jar
+
+  - name: Mystcraft
+    docs_url: http://binarymage.com/
+    download_url: http://binarymage.com/mystcraft/publish/mystcraft-1.7.2-0.10.15.00.jar
+
+  - name: OpenComputers
+    docs_url: http://www.minecraftforum.net/topic/2201440-opencomputers-v1213/
+    download_url: https://github.com/MightyPirates/OpenComputers/releases/download/v1.2.13/OpenComputers-MC1.7.2-1.2.13.148-universal.jar
+
+  - name: BuildCraft
+    docs_url: http://www.mod-buildcraft.com/
+    download_url: http://www.mod-buildcraft.com/releases/BuildCraft/6.0.16/buildcraft-6.0.16.jar
+
+  - name: Applied Energistics 2
+    docs_url: http://ae2.ae-mod.info/
+    download_url: http://ae2.ae-mod.info/builds/appliedenergistics2-rv0-beta-35.jar
+
+  - name: SpaceCore
+    docs_url: http://spacechase0.com/minecraft/mods/spacecore/
+    download_url: http://spacechase0.com/wp-content/plugins/mc-mod-manager/download.php?id=246
+
+  - name: Survival Wings (SpaceCore)
+    docs_url: http://spacechase0.com/minecraft/mods/survival-wings/
+    download_url: http://spacechase0.com/wp-content/plugins/mc-mod-manager/download.php?id=243
+
+  - name: Witchery
+    docs_url: http://www.minecraftforum.net/topic/1992544-164172-forge-witchery-0192/
+    download_url: http://addons.curse.cursecdn.com/files/2205/96/witchery-1.7.2-0.19.2.jar
+
+  - name: The Twilight Forest
+    docs_url: http://www.minecraftforum.net/topic/561673-172-the-twilight-forest-v211-new-progression-system/
+    download_url: https://dl.dropboxusercontent.com/u/38679977/twilightforest-1.7.2-2.1.1.jar
+
+  - name: Necromancy
+    docs_url: http://www.atomicstryker.net/necromancy.php
+    download_url: https://github.com/AtomicStryker/github.io/raw/master/files/Necromancy-1.7.2.jar
+
+  - name: Magic Ball of Yarn
+    docs_url: http://www.atomicstryker.net/magicyarn.php
+    download_url: https://github.com/AtomicStryker/github.io/raw/master/files/MagicYarn-1.7.2.jar
+
+  - name: Doge Mod
+    docs_url: http://www.minecraftforum.net/topic/2449437-172164forge-doge-mod-perfect-for-shibes-around-the-world/
+    download_url: http://download739.mediafire.com/b01v7bf060pg/zsddzafzj98z551/DogeMod_0.4.1_%5B1.7.2%5D.jar
+

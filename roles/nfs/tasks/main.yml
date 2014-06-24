@@ -1,0 +1,43 @@
+---
+- name: Install nfs Apt packages.
+  sudo: true
+  apt: >
+    pkg={{ item }}
+    state=latest
+  with_items:
+    - git-core
+
+- name: Clone nfs_automount git repository.
+  sudo: true,
+  git: >
+    repo=https://github.com/vwal/nfs_automount.git
+    dest=/home/{{ ansible_user_id }}/nfs_automount
+
+- name: Create link to nfs_automount binary.
+  sudo: true
+  file: >
+    src=/home/{{ ansible_user_id }}/nfs_automount/nfs_automount
+    owner=root
+    group=root
+    mode=0700
+    dest=/usr/local/bin/nfs_automount
+    state=link
+
+- name: Copy nfs_automount.conf to etc directory.
+  sudo: true
+  command: >
+    /bin/cp /home/{{ ansible_user_id }}/nfs_automount/etc/nfs_automount.conf /etc/nfs_automount.conf
+
+- name: Replace mounts configuration in nfs_automount.conf.
+  sudo: true
+  replace: >
+    dest=/etc/nfs_automount.conf
+    regexp='(MOUNTS=\()([^\)]*)(\))'
+    replace='\1 "rw|remote.example.com|/containervolumes|/mnt/containervolumes|" \3'
+    owner=root
+    group=root
+
+#- name: Copy nfs_automount.conf to service directory.
+  #sudo: true
+  #command: >
+    #/bin/cp /home/{{ ansible_user_id }}/nfs_automount/etc/

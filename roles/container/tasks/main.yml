@@ -1,0 +1,33 @@
+---
+- name: Create volumes directory for {{ container_name }}.
+  sudo: true
+  file: >
+    path={{ container_volume_root }}/{{ container_name }}
+    state=directory
+
+#- name: Generate {{ container_name }}.conf from a template.
+  #sudo: true
+  #template: >
+    #src=service.conf
+    #dest=/etc/init/{{ container_name }}.conf
+
+- name: Pull Docker image {{ image_name }} from Docker.io.
+  sudo: true
+  command: >
+    /usr/bin/docker pull {{ image_name }}
+
+- name: Create the {{ container_name }} Docker container from {{ image_name }}.
+  sudo: true
+  docker: >
+    image={{ image_name }}
+    ports={{ container_ports }}
+    volumes=/usr/share/container-volumes/{{ container_name }}:{{ container_volume }}
+    name={{ container_name }}
+    state=running
+
+#- name: Start the {{ container_name }} service.
+  #sudo: true
+  #service: >
+    #name={{ container_name }}
+    #enabled=yes
+    #state=started

@@ -1,0 +1,2 @@
+minecraft_version: "{{ image_tag }}"
+minecraft_root: /minecraft

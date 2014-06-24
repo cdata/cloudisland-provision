@@ -1,0 +1,13 @@
+provision_root: /vagrant
+container_volume_root: /usr/share/container-volumes
+containers:
+  - image_name: cdata/minecraft
+    image_tag: 1.7.9
+    container_name: minecraft-vanilla-0
+    container_ports: 25565:25565
+    container_volume: /minecraft/world_volume
+  - image_name: cdata/minecraft-modded
+    image_tag: alpha
+    container_name: minecraft-modded-0
+    container_ports: 25566:25565
+    container_volumes:

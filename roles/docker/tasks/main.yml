@@ -1,0 +1,42 @@
+---
+- name: Install python-pip package.
+  sudo: true
+  apt: >
+    package=python-pip
+    state=installed
+
+- name: Install docker-py package.
+  sudo: true
+  pip: >
+    name=docker-py
+    state=present
+
+- name: Install python-apt package.
+  sudo: true
+  pip: >
+    name=python-apt
+    state=present
+
+- name: Add Docker.io to apt sources.
+  sudo: true
+  apt_repository: >
+    repo='deb http://get.docker.io/ubuntu docker main'
+    state=present
+
+- name: Install lxc-docker apt package.
+  sudo: true
+  apt: >
+    package=lxc-docker
+    update_cache=yes
+    force=yes
+    state=latest
+
+# Might be needed if we go back to default apt docker.io package
+#- name: Create symlink between docker.io and docker.
+  #sudo: true
+  #file: >
+    #src=/usr/bin/docker.io
+    #dest=/usr/local/bin/docker
+    #state=link
+
+

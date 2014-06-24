@@ -1,0 +1,19 @@
+---
+- name: Install avahi-daemon Apt package.
+  sudo: true
+  apt: >
+    package=avahi-daemon
+    state=latest
+
+#- name: Disable automatic respawn in Docker daemon.
+  #sudo: true
+  #lineinfile: >
+    #dest=/etc/default/docker
+    #line='DOCKER_OPTS="-r=false"'
+
+#- name: Restart Docker service.
+  #sudo: true
+  #service: >
+    #name=docker
+    #state=restarted
+

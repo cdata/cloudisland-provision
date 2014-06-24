@@ -1,0 +1,5 @@
+---
+- name: Login to docker.io
+  sudo: true
+  command: /usr/bin/docker login -e {{ docker_email }} -u {{ docker_user }} -p {{ docker_secret }}
+

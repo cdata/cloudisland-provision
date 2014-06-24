@@ -1,0 +1,24 @@
+---
+- name: Install default-jre package.
+  sudo: true
+  apt: >
+    package=default-jre
+    force=yes
+    state=latest
+
+- name: Create Minecraft root.
+  file: >
+    dest={{ minecraft_root }}/world_volume
+    state=directory
+
+- name: Generate start_server.sh script from template.
+  template: >
+    src=start_server.sh
+    dest={{ minecraft_root }}/start_server.sh
+    mode=0555
+
+- name: Download Minecraft Server.
+  get_url: >
+    url=https://s3.amazonaws.com/Minecraft.Download/versions/{{ minecraft_version }}/minecraft_server.{{ minecraft_version }}.jar
+    dest={{ minecraft_root }}/minecraft_server.{{ minecraft_version }}.jar
+
