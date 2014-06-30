@@ -4,3 +4,8 @@
     url={{ item.download_url }}
     dest={{ minecraft_root }}/mods
   with_items: minecraft_mods
+
+- name: Generate mod manifest from template.
+  template: >
+    src=mod-manifest.json
+    dest={{ minecraft_root }}/mod-manifest.json

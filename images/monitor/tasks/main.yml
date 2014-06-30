@@ -1,0 +1,35 @@
+---
+- name: Create monitor root.
+  file: >
+    path=/monitor/volumes
+    state=directory
+
+- name: Fetch NodeJS v0.11.10 archive.
+  get_url: >
+    url=http://nodejs.org/dist/v0.11.10/node-v0.11.10-linux-x64.tar.gz
+    dest=/monitor/node.tar.gz
+
+- name: Extract NodeJS v0.11.10 archive.
+  command: >
+    tar -xvf /monitor/node.tar.gz
+    chdir=/monitor
+
+- name: Rename NodeJS v0.11.10 directory.
+  command: >
+    mv /monitor/node-v0.11.10-linux-x64 /monitor/nodejs
+
+- name: Copy monitor app to monitor root.
+  copy: >
+    src=app
+    dest=/monitor
+
+- name: Install NPM dependencies.
+  command: >
+    /monitor/nodejs/bin/npm install
+    chdir=/monitor/app
+
+- name: Generate start script from template.
+  template: >
+    src=start.sh
+    dest=/monitor/start.sh
+    mode=0555

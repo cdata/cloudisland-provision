@@ -8,7 +8,7 @@
 
 - name: Create Minecraft root.
   file: >
-    dest={{ minecraft_root }}/world_volume
+    dest={{ minecraft_root }}/volume
     state=directory
 
 - name: Generate start_server.sh script from template.
@@ -16,6 +16,12 @@
     src=start_server.sh
     dest={{ minecraft_root }}/start_server.sh
     mode=0555
+
+- name: Generate eula.txt file from template.
+  template: >
+    src=eula.txt
+    dest={{ minecraft_root }}/eula.txt
+    mode=0444
 
 - name: Download Minecraft Server.
   get_url: >

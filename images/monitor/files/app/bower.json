@@ -1,0 +1,26 @@
+{
+  "name": "cloudisland-monitor",
+  "main": "index.js",
+  "version": "0.0.1",
+  "homepage": "https://github.com/cdata/cloudisland-provision",
+  "authors": [
+    "Chris Joel <chris@scriptolo.gy>"
+  ],
+  "moduleType": [
+    "es6"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "react": "~0.10.0",
+    "normalize-css": "~3.0.1"
+  }
+}

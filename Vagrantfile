@@ -41,8 +41,29 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       instance.vm.network "private_network", ip: "172.17.42.#{ip}"
       if hostname == "colossus"
         instance.vm.network "forwarded_port", guest: 25565, host: 25565
+        instance.vm.network "forwarded_port", guest: 25566, host: 25566
+        #instance.vm.network "forwarded_port", guest: 80, host: 80
       end
     end
+  end
+
+  # Someday. when AWS makes sense..
+  config.vm.provider "aws" do |aws, override|
+    aws.access_key_id = ENV["AWS_ACCESS_KEY_ID"]
+    aws.secret_access_key = ENV["AWS_SECRET_ACCESS_KEY"]
+    aws.keypair_name = ENV["AWS_KEYPAIR_NAME"]
+    aws.region = "us-west-1"
+    aws.instance_type = "m3.2xlarge"
+
+    aws.security_groups = ["vagrant-default"]
+
+    aws.ami = "ami-72636437"
+
+    override.vm.box = "dummy"
+    override.vm.box_url = "https://github.com/mitchellh/vagrant-aws/raw/master/dummy.box"
+
+    override.ssh.username = "ubuntu"
+    override.ssh.private_key_path = ENV["AWS_PRIVATE_KEY_PATH"]
   end
 
   # Someday, when CoreOS makes sense..

@@ -1,0 +1,7 @@
+[{% for mod in minecraft_mods %}
+  {
+    "name": "{{ mod.name }}",
+    "docs_url": "{{ mod.docs_url }}",
+    "download_url": "{{ mod.download_url }}"
+  }{% if not loop.last %},{% endif %}
+{% endfor %}]

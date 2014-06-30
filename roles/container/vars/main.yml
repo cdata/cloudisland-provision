@@ -1,0 +1,2 @@
+container_default_volume: /volume
+container_volumes: /usr/share/container-volumes/{{ container_name }}:{{ container_default_volume }}

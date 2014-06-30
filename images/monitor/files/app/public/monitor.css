@@ -1,0 +1,157 @@
+body {
+  font-size: 14px;
+  background-color: #333233;
+  color: #DFDFDF;
+  font-family: Meslo, Menlo, monospace;
+}
+
+h1 {
+  color: #BDBB9A;
+  font-size: 1em;
+  padding: 0.5em;
+  margin: 0;
+}
+
+.status > header {
+  border-bottom: 1px solid #729773;
+  background-color: #3F3F3F;
+}
+
+.status {
+  display: block;
+  position: relative;
+
+  border: 1px solid #729773;
+  margin: 1em auto;
+  max-width: 800px;
+
+  background-color: #4B4B4B;
+  overflow: hidden;
+}
+
+.status > ul,
+.status > ul > li {
+  display: block;
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+.status .container {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  clear: both;
+}
+
+.status > ul > li:not(:last-child) {
+  border-bottom: 1px dashed #729773;
+}
+
+.status .container > header {
+  display: inline-block;
+}
+
+.status .container h1 {
+  color: #99BCBD;
+  display: inline-block;
+  font-size: 1em;
+}
+
+.status .container:before {
+  content: '·';
+  display: inline-block;
+  position: relative;
+  padding: 0 0 0 0.5em;
+  color: #8CD6E4;
+  font-weight: bold;
+}
+
+.status .container:not(.online) h1,
+.status .container:not(.online) header > span,
+.status .container:not(.online):before {
+  color: #DF9783;
+}
+
+.mod-actions {
+  display: block;
+  position: relative;
+  top: 0;
+  float: right;
+  padding: 0.5em;
+}
+
+.mod-list-container {
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+
+.mod-list {
+  padding: 0 2em 0.5em;
+}
+
+.mod-list > li {
+  display: block;
+}
+
+.mod-list > li:not(:last-child) {
+  margin-bottom: 0.25em;
+}
+
+.mod-list > li:before {
+  float: left;
+  width: 0;
+  white-space: nowrap;
+  content:"................................................................................";
+
+  color: #C3C3C3;
+}
+
+.mod-list > li > span {
+  background-color: #4b4b4b;
+}
+
+.mod-list-actions {
+  padding-left: 1em;
+  float: right;
+}
+
+.mod-list-name {
+  padding-right: 1em;
+}
+
+a {
+  color: #FFFB9E;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+@media all and (max-width: 700px) {
+
+  .mod-actions {
+    display: block;
+    float: none;
+    margin-left: 1em;
+    padding-top: 0;
+  }
+
+  .status {
+    margin-top: 0;
+    border: 0;
+    width: 100%;
+  }
+}
+
+@media all and (max-width: 600px) {
+
+}
+
+@media all and (max-width: 500px) {
+  .mod-actions > span:first-child {
+    display: none;
+  }
+}

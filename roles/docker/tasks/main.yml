@@ -3,6 +3,7 @@
   sudo: true
   apt: >
     package=python-pip
+    update_cache=yes
     state=installed
 
 - name: Install docker-py package.

@@ -6,40 +6,51 @@
   roles:
     - compute
     - { role: container,
-        image_name: 'cdata/minecraft:1.7.9',
+        image_name: 'cdata/monitor:0.0.1',
+        container_ports: '80:4000',
+        container_name: 'monitor-0',
+        container_volumes: '/usr/share/container-volumes:/usr/share/container-volumes,/var/run/docker.sock:/var/run/docker.sock' }
+    - { role: container,
+        image_name: 'cdata/minecraft:1.7.10',
         container_ports: '25565:25565',
         container_name: 'minecraft-vanilla-0',
-        container_volume: '/minecraft/world_volume' }
+        container_default_volume: '/minecraft/volume' }
     - { role: container,
-        image_name: 'cdata/minecraft-modded:alpha',
-        container_ports: '25565:25566',
+        image_name: 'cdata/minecraft-modded:1.7.2',
+        container_ports: '25566:25565',
         container_name: 'minecraft-modded-0',
-        container_volume: '/minecraft/world_volume' }
+        container_default_volume: '/minecraft/volume' }
 - hosts: factory
   roles:
     - factory
     - { role: image,
+        image_name: 'monitor',
+        image_tag: 0.0.1,
+        image_ports: [4000],
+        image_volumes: ['/monitor/volumes'],
+        image_command: '/monitor/start.sh' }
+    - { role: image,
         image_name: 'minecraft',
         image_tag: 1.7.2,
         image_ports: [25565],
-        image_volumes: ['/minecraft/world_volume'],
+        image_volumes: ['/minecraft/volume'],
         image_command: '/minecraft/start_server.sh' }
     - { role: image,
         image_name: 'minecraft',
-        image_tag: 1.7.9,
+        image_tag: 1.7.10,
         image_ports: [25565],
-        image_volumes: ['/minecraft/world_volume'],
+        image_volumes: ['/minecraft/volume'],
         image_command: '/minecraft/start_server.sh' }
     - { role: image,
         image_base: 'cdata/minecraft:1.7.2',
         image_name: 'minecraft-forge',
         image_tag: 1.7.2,
-        image_volumes: ['/minecraft/world_volume'],
+        image_volumes: ['/minecraft/volume'],
         image_command: '/minecraft/start_server.sh',
         minecraft_forge_version: 1.7.2-10.12.2.1121 }
     - { role: image,
         image_base: 'cdata/minecraft-forge:1.7.2',
         image_name: 'minecraft-modded',
-        image_tag: alpha,
-        image_volumes: ['/minecraft/world_volume'],
+        image_tag: 1.7.2,
+        image_volumes: ['/minecraft/volume'],
         image_command: '/minecraft/start_server.sh' }

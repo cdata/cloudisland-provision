@@ -1,0 +1,18 @@
+{
+  "name": "cloudisland-monitor",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "karma test --single-run"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dockerode": "^2.0.0",
+    "koa": "^0.8.1",
+    "koa-static": "^1.4.5",
+    "koa-route": "^1.1.4",
+    "rsvp": "^3.0.9"
+  }
+}

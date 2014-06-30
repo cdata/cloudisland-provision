@@ -5,12 +5,6 @@
     path={{ container_volume_root }}/{{ container_name }}
     state=directory
 
-#- name: Generate {{ container_name }}.conf from a template.
-  #sudo: true
-  #template: >
-    #src=service.conf
-    #dest=/etc/init/{{ container_name }}.conf
-
 - name: Pull Docker image {{ image_name }} from Docker.io.
   sudo: true
   command: >
@@ -21,9 +15,15 @@
   docker: >
     image={{ image_name }}
     ports={{ container_ports }}
-    volumes=/usr/share/container-volumes/{{ container_name }}:{{ container_volume }}
+    volumes={{ container_volumes }}
     name={{ container_name }}
     state=running
+
+#- name: Generate {{ container_name }}.conf from a template.
+  #sudo: true
+  #template: >
+    #src=service.conf
+    #dest=/etc/init/{{ container_name }}.conf
 
 #- name: Start the {{ container_name }} service.
   #sudo: true
